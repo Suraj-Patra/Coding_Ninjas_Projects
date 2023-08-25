@@ -5,7 +5,7 @@ let todo_arr = [
     { todo: 'When', isCompleted: false },
 ];
 
-// Selecting the 'form', 'ul', 'input' :
+// Selecting the 'form', 'ul' and 'input' :
 const todo_form = document.querySelector('#todo-form');
 const ul = document.getElementById('lists');
 const todo_input = document.getElementById('todo-input');
