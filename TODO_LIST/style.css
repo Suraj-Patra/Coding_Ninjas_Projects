@@ -1,3 +1,160 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .completed span{
     text-decoration: line-through;
+}
+.completed .done {
+    transition: all 0.2s ease-in-out;
+    background-color:#09c4a4;
+    color: var(--main-background);
+}
+
+/* ---------------- global ------------------ */
+:root {
+    --body-background: #f5f4f4;
+    --main-background: #fff;
+}
+
+button {
+    /* padding: 1.2em; */
+
+    padding: 1em;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--body-background);
+}
+button:hover {
+    color: #078b75;
+}
+
+
+/* ------------------- tags ----------------- */
+body {
+    /* background-color: antiquewhite; */
+    background-color: var(--body-background);
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2em;
+    
+    border-radius: 5px;
+    background-color: var(--main-background);
+}
+
+
+/* -------------------- form-section ----------- */
+#todo-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+#todo-form input{
+    width: 100%;
+    padding: 0 1.2em;
+
+    font-size: 1.2rem;
+    background: var(--body-background);
+    border: none;
+    outline: none;
+    border-radius: 5px 0 0 5px;
+}
+#todo-form input:focus {
+    font-weight: bold;
+    color: #09c4a4;
+}
+#todo-form button {
+    font-size: 1.2rem;
+    border-radius: 0 5px 5px 0;
+}
+
+
+/* ------------ Before todo list buttons ------- */
+.upper-todo-buttons {
+    margin: 1em 0;
+    border-bottom: 1px dashed #eee;
+}
+.upper-todo-buttons button {
+    color:#09c4a4;
+    background: none;
+}
+.upper-todo-buttons button:hover {
+    color: #078b75;
+}
+
+
+/* -------------- todo lists ----------------- */
+ul {
+    list-style: none;
+}
+li {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1.2em 0;
+    transition: all 0.2s ease-in-out;
+}
+li:hover {
+    background: #bbd3cf;
+    border-radius: 5px;
+}
+li span {
+    margin-left: 1.2em;
+}
+li .remove {
+    margin-left: auto;
+}
+
+
+/* ------------ After todo list buttons ------- */
+.lower-todo-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed var(--body-background);
+    margin-bottom: -1rem;
+}
+.lower-todo-buttons span {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.lower-todo-buttons button {
+    color:#09c4a4;
+    background: none;
+}
+.lower-todo-buttons button:hover {
+    color:#078b75;
+}
+
+
+
+
+@media screen and (min-width: 700px) {
+    section {
+        width: 70%;
+    }
+}
+@media screen and (min-width: 1000px) {
+    section {
+        width: 50%;
+    }
 }

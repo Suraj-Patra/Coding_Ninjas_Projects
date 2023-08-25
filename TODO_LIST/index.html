@@ -8,17 +8,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id='todo-form'>
-        <input type="text" name='todolist' placeholder='Enter todo' id='todo-input'>
-        <button type="submit" id='add-todo'>+</button>
-    </form>
-    <ul id="lists"></ul>
-
-    <span id="tasks-left"></span>
-    <button id='show-completed'>Completed</button>
-    <button id='show-all'>All</button>
-    <button id='show-uncompleted'>Uncompleted</button>
-    <button id='clear-completed'>Clear Completed</button>
-    <button id='complete-all'>Complete All</button>
+    <main>
+        <section>
+            <form id='todo-form'>
+                <input type="text" name='todolist' placeholder='Type your todo list' id='todo-input'>
+                <button type="submit" id='add-todo'>&#9998;</button>
+            </form>
+            <div class="upper-todo-buttons">
+                <button id='complete-all'>&#10004;Complete All Tasks</button>
+                <button id='clear-completed'>Clear Completed</button>
+            </div>
+            <ul id="lists"></ul>
+        
+            <div class="lower-todo-buttons">
+                <span id="tasks-left"></span>
+                <div>
+                    <button id='show-completed'>Completed</button>
+                    <button id='show-all'>All</button>
+                    <button id='show-uncompleted'>Uncompleted</button>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
