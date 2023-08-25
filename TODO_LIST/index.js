@@ -1,4 +1,4 @@
-const todo_arr = [
+let todo_arr = [
     { todo: 'Hello', isCompleted: false },
     { todo: 'Hi', isCompleted: false },
     { todo: 'Bye', isCompleted: false },
@@ -31,48 +31,52 @@ function show_todo(todo_arr) {
         // Append the li inside ul :
         ul.appendChild(li);
     })
+    tasks_left();
 }
 show_todo(todo_arr);
 
 
-function main() {
 
     
-    /* --------------- Adding list to the 'ul' -------------------- */
-    todo_form.addEventListener('submit', (e) => {
-        e.preventDefault();     // preventing default submit behaviour
+/* --------------- Adding list to the 'ul' -------------------- */
+todo_form.addEventListener('submit', (e) => {
+    e.preventDefault();     // preventing default submit behaviour
+    
+    // Get the input value and then empty the input field :
+    const content = todo_input.value;
+    todo_input.value = '';
+    todo_arr.push({todo: content, isCompleted: false});
+    show_todo(todo_arr);        
+})
+
+
+/* ------ Completing and Removing lists with Event-delegation ---------- */
+ul.addEventListener('click', (e) => {
+    if(e.target.classList.contains('done')) {   // if the class is 'done'
+        const li = e.target.parentElement;
+        const span = li.querySelector('span');
+        const content = span.textContent;
+        const index = todo_arr.findIndex(obj => obj.todo===content);
         
-        // Get the input value and then empty the input field :
-        const content = todo_input.value;
-        todo_input.value = '';
-        todo_arr.push({todo: content, isCompleted: false});
-        show_todo(todo_arr);        
-    })
-    
-    
-    /* ------ Completing and Removing lists with Event-delegation ---------- */
-    ul.addEventListener('click', (e) => {
-        if(e.target.classList.contains('done')) {   // if the class is 'done'
-            const li = e.target.parentElement;
-            const span = li.querySelector('span');
-            const content = span.textContent;
-            const index = todo_arr.findIndex(obj => obj.todo===content);
-            
-            if(todo_arr[index].isCompleted)
-                todo_arr[index].isCompleted = false;
-            else
-                todo_arr[index].isCompleted = true;
-            
-            show_todo(todo_arr)
-        } else if(e.target.classList.contains('remove')) {  // if the class is 'remove'
-            const li = e.target.parentElement
-            li.remove();
-        }
-    })
+        todo_arr[index].isCompleted = !(todo_arr[index].isCompleted);
+        
+        show_todo(todo_arr)
+    } else if(e.target.classList.contains('remove')) {  // if the class is 'remove'
+        const li = e.target.parentElement
+        li.remove();
+    }
+})
 
 
+function tasks_left() {
+    const span = document.querySelector('#tasks-left');
+    let count = 0;
+    todo_arr.forEach(obj => !obj.isCompleted && count++);
+    span.textContent = `${count} tasks left`;
 }
-main();
+tasks_left();
+
+
 
 function show_completed() {
     const completed_list_arr = todo_arr.filter(obj => obj.isCompleted); 
@@ -100,4 +104,27 @@ function show_uncompleted() {
 const show_uncompleted_btn = document.querySelector('#show-uncompleted');
 show_uncompleted_btn.addEventListener('click', () => {
     show_uncompleted();
+})
+
+
+
+function complete_all() {
+    todo_arr = todo_arr.map(obj => {
+        return {...obj, isCompleted:true}
+    }); 
+    show_todo(todo_arr);
+}
+const complete_all_btn = document.querySelector('#complete-all');
+complete_all_btn.addEventListener('click', () => {
+    complete_all();
+})
+
+
+function clear_completed() {
+    todo_arr = todo_arr.filter(obj => !obj.isCompleted); 
+    show_todo(todo_arr);
+}
+const clear_completed_btn = document.querySelector('#clear-completed');
+clear_completed_btn.addEventListener('click', () => {
+    clear_completed();
 })
